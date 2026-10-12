@@ -1,0 +1,46 @@
+## IDF Component Manager Manifest File
+## P4 走 av_device_esp32p4.c（ES8311 + MIPI-CSI + LCD）。
+## 仍不拉 esp_board_manager / esp_capture / esp_audio_render。
+dependencies:
+  espressif/gmf_ai_audio:
+    version: "~0.8"
+    rules:
+      - if: "target in [esp32s3, esp32]"
+  # 钉在 0.8.x：registry 上 gmf_loader/gmf_audio 1.0 会拉 esp_codec_dev
+  # 2.0.0-beta（依赖 usb_host_uac + CODEC_UAC_SUPPORT），idf.py 的
+  # check_for_new_component_versions 无锁求解时会污染 KCONFIG_CONTEXT，
+  # 导致 "Missing required kconfig option after retry"。
+  espressif/gmf_loader:
+    version: "~0.8"
+  espressif/esp_wifi_remote:
+    version: ">=0.10,<2.0"
+    rules:
+      - if: "target in [esp32p4, esp32h2]"
+  espressif/esp_hosted:
+    version: "~2"
+    rules:
+      - if: "target in [esp32p4, esp32h2]"
+  espressif/gmf_audio:
+    version: "~0.8"
+    rules:
+      - if: "target in [esp32p4]"
+  espressif/esp_audio_codec: ^2.5.0
+  espressif/esp_codec_dev: "1.6.2"
+  espressif/esp-sr:
+    version: "2.4.4"
+  espressif/esp_lcd_ek79007:
+    version: "~2.0.1"
+    rules:
+      - if: "target in [esp32p4]"
+  espressif/esp_cam_sensor:
+    version: "2.3.0"
+    rules:
+      - if: "target in [esp32p4]"
+  espressif/esp_ipa:
+    version: "2.2.0~1"
+    rules:
+      - if: "target in [esp32p4]"
+  espressif/esp_video:
+    version: "2.3.0"
+    rules:
+      - if: "target in [esp32p4]"

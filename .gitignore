@@ -1,0 +1,15 @@
+# ---- ESP-IDF build artifacts (regenerable) ----
+build/
+sdkconfig
+sdkconfig.old
+managed_components/
+
+# ---- local backups (not part of the upstream delivery) ----
+sdkconfig.defaults.orig
+
+# ---- IDE / OS ----
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+desktop.ini

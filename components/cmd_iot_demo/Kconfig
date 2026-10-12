@@ -1,0 +1,11 @@
+menu "IoT Demo Audio Config"
+
+    config AUDIO_USE_FILESTREAM
+        bool "Use file stream instead of real audio driver"
+        default y
+        help
+            When enabled, audio capture reads from SPIFFS WAV file
+            and playback data is discarded. Used for signaling debugging
+            without real audio hardware.
+
+endmenu
